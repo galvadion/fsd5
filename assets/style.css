@@ -1,0 +1,45 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+section{
+    background-color: salmon;
+    padding: 20px;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 6px 8px gray;
+    margin:20px;
+}
+
+#margin-bottom{
+    margin-bottom: 20px;
+}
+
+ol,ul{
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+p{
+    margin-top: 20px;
+    line-height: 20px;
+}
+
+ol {
+    color: green;
+}
+
+#emphasis {
+    color:indigo
+}
+.bigger-letter{
+    font-size: 30px;
+}
