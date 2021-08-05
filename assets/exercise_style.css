@@ -4,8 +4,11 @@
 }
 
 header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: aqua;
-    height: 20vh;
+    height: 10vh;
 }
 
 footer{
@@ -29,7 +32,7 @@ aside{
 }
 
 article{
-    width: 80%;
+    display: inline;
     float: left;
 }
 
@@ -43,4 +46,8 @@ article{
 
 .middle_size_text{
     font-size: 25px;
+}
+
+img{
+    width: 50px;
 }
