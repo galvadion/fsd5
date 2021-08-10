@@ -11,7 +11,6 @@
             margin: 0px ;
             background-color: yellow;
         }
-        
         body {
             display: grid;
             grid-template-areas: "header header"
@@ -22,7 +21,7 @@
             gap:20px;
             background-color:white;
         }
-
+        
         header{
             grid-area: header;
         }
@@ -35,19 +34,24 @@
             grid-area:main;
             display: grid;
             gap: 20px;
+            grid-template-areas: "article ads"
+                                "footer footer";
             background-color: white;
             grid-template-rows: 4fr 1fr;
-            grid-template-columns: 1fr;
-        }
-        #upper_row{
-            display: grid;
-            grid-row: span;
-            background-color: white;
-            grid-template-columns: 3fr 1fr;
-            grid-template-rows: 1fr;
-            gap:20px
+            grid-template-columns: 4fr 1fr;
         }
 
+        article{
+            grid-area: article;
+        }
+
+        footer{
+            grid-area: footer;
+        }
+
+        #ads{
+            grid-area:ads;
+        }
     </style>
 </head>
 <body>
@@ -58,15 +62,15 @@
         NAV
     </nav>
     <main>
-        <div id="upper_row">
-            <article>
-                Article
-            </article>
-            <div id="ads">
-                ADS
-            </div>
+        <article>
+            Article
+        </article>
+        <div id="ads">
+            ADS
         </div>
-        <footer>Footer</footer>
+        <footer>
+            FOOTER
+        </footer>
     </main>
 </body>
 </html>
