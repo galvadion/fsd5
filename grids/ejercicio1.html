@@ -13,10 +13,13 @@
         body{
             display: grid;
             grid-template-areas: "head head"
-                                "aside article"
+                                "aside main"
+                                "aside main"
+                                "aside main"
+                                "aside extra"
                                 "footer footer";
             grid-template-columns: 2fr 5fr;
-            grid-template-rows: 1fr 6fr 1fr;
+            grid-template-rows: repeat(6,1fr);
             height: 100vh;
             gap:20px;
         }
@@ -32,18 +35,13 @@
             grid-area:aside;
             background-color: green;
         }
-        article{
-            grid-area: article;
-            display:grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: repeat(4,1fr);
-            gap:20px
-        }
         main{
-            grid-row: 1 / span 3;
+            grid-area: main;
             background-color: yellow;
+
         }
         #extra{
+            grid-area:extra;
             background-color: gray;
         }
     </style>
@@ -51,10 +49,8 @@
 <body>
     <header>Header</header>
     <aside>Side content</aside>
-    <article>
-        <main> main content</main>
-        <div id="extra">Extra content</div>
-    </article>
+    <main> main content</main>
+    <div id="extra">Extra content</div>
     <footer></footer>
 </body>
 </html>
