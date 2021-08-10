@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin:0px;
+        }
+        body{
+            background-color: skyblue;
+        }
+
+        #container{
+            margin:20px;
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 2fr 1fr;
+            height: 600px;
+            gap:20px
+        }
+        #left-container{
+            display: grid;
+            gap:20px;
+            grid-template-rows: 1fr 2fr;
+            grid-template-columns: repeat(6,1fr);
+        }
+        #red{
+            grid-row: 1;
+            grid-column: 1 / span 2;
+            background-color: red;
+        }
+        #orange{
+            grid-row: 2;
+            grid-column: 1 / span 2;
+            background-color: orange;
+        }
+
+        #turquoise{
+            grid-row: 1;
+            grid-column: 3 / span 3;
+            background-color: turquoise;
+        }
+
+        #green {
+            grid-row: 1;
+            grid-column: 6;
+            background-color: green;
+        }
+
+        #light_orange{
+            grid-row: 2;
+            grid-column: 3 / span 4;
+            background-color: lightcoral;
+        }
+
+        #right-container{
+            display: grid;
+            gap:20px;
+            grid-template-rows: 1fr;
+            grid-template-columns: repeat(10,1fr);
+        }
+
+        #one{
+            grid-column: span 3;
+            background-color: blue;
+        }
+
+        #two{
+            grid-column: 4 / span 6;
+            background-color: darkblue;
+        }
+
+        #three{
+            grid-column: 10;
+            background-color: burlywood;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left-container">
+            <div id="red">
+                red
+            </div>
+            <div id="orange">
+                orange
+            </div>
+            <div id="turquoise">
+                turquoise
+            </div>
+            <div id="green">
+                green
+            </div>
+            <div id="light_orange">
+                light_orange
+            </div>
+        </div>
+        <div id="right-container">
+            <div id="one">
+                red
+            </div>
+            <div id="two">
+                orange
+            </div>
+            <div id="three">
+                a
+            </div>
+        </div>
+    </div>
+</body>
+</html>
