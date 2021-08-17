@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check list Sinergia</title>
+    <style>
+         body {
+        display: grid;
+        grid-template-rows: repeat (12, 1fr);
+        background-color:rgb(22, 83, 25);
+        height: 1000px;
+        gap: 20px;
+       }
+header{
+    grid-row: span 2;
+    background-color: white;
+    gap: 20px;
+}
+aside{
+    grid-row: 3 / span 9;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    gap: 20px;
+}
+#filtros{
+        align-content: center;
+        grid-column: 1;
+        background-color: tomato;
+        border-radius: 20px;
+        gap: 20px;
+}
+#table{
+    grid-column: 2;
+    background-color: blue;
+    border-radius: 20px;
+}
+#responsable{
+        gap: 20px;
+}
+footer{
+    grid-row: 12;
+    background-color: white;
+    gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>Imagen</header>
+    <aside>
+        <Div id="filtros">Filtros
+            <Div id="Responsable">Responsable</Div>
+            <Div id="Estado">Estado</Div>
+            <Div id="Mes">Mes</Div>
+            <div>Agregar Tarea</div>
+        </Div>
+        <table id="table">
+            <tr>
+                <th>TAREAS</th>
+                <th>Ene</th>
+                <th>Responsable</th>
+                <th>Comentario</th>
+            </tr>
+            <tr>
+                <td>Conciliacion</td>
+                <td><input type="checkbox"></td>
+                <td>
+                    <select>
+                    <option >Noe</option>
+                    <option >Juan</option>
+                    <option >Helen</option>
+                    </select>
+                </td>
+                <td><input type= “text”></td>
+            </tr>
+            <tr>
+                <td>Seguros</td>
+                <td><input type="checkbox"></td>
+                <td>
+                    <select>
+                    <option >Noe</option>
+                    <option >Juan</option>
+                    <option >Helen</option>
+                    </select>
+                </td>
+                <td><input type= “text”></td>
+            </tr>
+            <tr>
+                <td>Sueldos</td>
+                <td><input type="checkbox"></td>
+                <td>
+                    <select>
+                    <option >Noe</option>
+                    <option >Juan</option>
+                    <option >Helen</option>
+                    </select>
+                </td>
+                <td><input type= “text”></td>
+            </tr>
+            <tr>
+                <td>Impuestos</td>
+                <td><input type="checkbox"></td>
+                <td>
+                    <select>
+                    <option >Noe</option>
+                    <option >Juan</option>
+                    <option >Helen</option>
+                    </select>
+                </td>
+                <td><input type= “text”></td>
+            </tr>
+            <tr>
+                <td>Tipo de cambio</td>
+                <td><input type="checkbox"></td>
+                <td>
+                    <select>
+                    <option >Noe</option>
+                    <option >Juan</option>
+                    <option >Helen</option>
+                    </select>
+                </td>
+                <td><input type= “text”></td>
+            </tr>
+            <tr>
+                <td>Alquileres</td>
+                <td><input type="checkbox"></td>
+                <td>
+                    <select>
+                    <option >Noe</option>
+                    <option >Juan</option>
+                    <option >Helen</option>
+                    </select>
+                </td>
+                <td><input type= “text”></td>
+            </tr>
+            <td>Gastos comunes</td>
+            <td><input type="checkbox"></td>
+            <td>
+                <select>
+                <option >Noe</option>
+                <option >Juan</option>
+                <option >Helen</option>
+                </select>
+            </td>
+            <td><input type= “text”></td>
+        </tr>
+        </table>
+    </aside>
+<footer>Hecho por juan</footer>
+</body>
+</html>
