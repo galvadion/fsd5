@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio Landing Page II</title>
+    <style>
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body{
+        font-family: "Rubik",sans-serif;
+      }
+
+      header {
+        background-color: black;
+        color: white;
+      }
+
+      nav{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      nav a {
+        padding: 0.5rem;
+        margin:0.5rem;
+      }
+
+      nav svg {
+        display: none;
+      }
+
+      main {
+        height: 70vh;
+
+        background-image: url("assets/fondo.jpeg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+      }
+
+      main h1 {
+        font-size: 4rem;
+        text-align: center;
+      }
+
+      main button {
+        padding: 0.5rem 2rem;
+        border:none;
+        color: white;
+        background-color: orangered;
+      }
+
+
+      .services{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3fr 3fr 3fr;
+        justify-items: center;
+      } 
+
+      .services div {
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .service svg {
+        margin: 1rem;
+        width: 3rem;
+        height: 3rem;
+        color: black;
+        fill: orangered;
+      }
+
+      @media screen and (min-width:600px) {
+        nav svg {
+          display: block;
+          margin:0.5rem;
+        }
+
+        nav {
+          justify-content: flex-end;
+        }
+
+        .services {
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 4fr;
+        }
+
+        .services > div:first-child {
+          grid-column: 1 / span 3;
+        }
+
+      }
+
+    </style>
+  </head>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <body>
+    <header>
+      <nav>
+        <a>About us</a>
+        <a>Services</a>
+        <a>Contact</a>
+        <i data-feather="youtube"></i>
+        <i data-feather="facebook"></i>
+        <i data-feather="twitter"></i>
+      </nav>
+    </header>
+    <main>
+      <h1>MY HTML WEBSITE</h1>
+      <button>LEARN HOW</button>
+    </main>
+    <section class="services">
+      <div>
+        <h2>
+          Additional Services
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, id?
+        </p>
+      </div>
+      <div class="service">
+        <i data-feather="heart"></i>
+        <h3>HEALTH</h3>
+        <b>Lorem, ipsum</b>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque at
+          sapiente mollitia illum ullam quidem nobis officiis, neque illo
+          distinctio dignissimos. Non iste esse sunt itaque debitis velit nihil
+          recusandae? Sequi velit numquam accusamus, blanditiis aliquid quam
+          est? Beatae, similique.
+        </p>
+      </div>
+      <div class="service">
+        <i data-feather="compass"></i>
+        <h3>TRAVEL</h3>
+        <b>Lorem, ipsum</b>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque at
+          sapiente mollitia illum ullam quidem nobis officiis, neque illo
+          distinctio dignissimos. Non iste esse sunt itaque debitis velit nihil
+          recusandae? Sequi velit numquam accusamus, blanditiis aliquid quam
+          est? Beatae, similique.
+        </p>
+      </div>
+      <div class="service">
+        <i data-feather="camera"></i>
+        <h3>PHOTOS</h3>
+        <b>Lorem, ipsum</b>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque at
+          sapiente mollitia illum ullam quidem nobis officiis, neque illo
+          distinctio dignissimos. Non iste esse sunt itaque debitis velit nihil
+          recusandae? Sequi velit numquam accusamus, blanditiis aliquid quam
+          est? Beatae, similique.
+        </p>
+      </div>
+    </section>
+  </body>
+  <script>
+    feather.replace()
+  </script>
+</html>
