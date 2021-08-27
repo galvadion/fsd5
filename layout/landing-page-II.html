@@ -66,6 +66,10 @@
         background-color: orangered;
       }
 
+      .red_text {
+        color:red;
+      }
+
 
       .services{
         display: grid;
@@ -159,7 +163,7 @@
           est? Beatae, similique.
         </p>
       </div>
-      <div class="service">
+      <div class="service" id="camera-service">
         <i data-feather="camera"></i>
         <h3>PHOTOS</h3>
         <b>Lorem, ipsum</b>
@@ -175,5 +179,69 @@
   </body>
   <script>
     feather.replace()
+  </script>
+  <script>
+    let age = 29;
+
+    // 
+    /*
+      Este es un código comentado
+      alert(`Tu edad es ${age}`)
+    */
+    console.log("Tu edad es " + getAge(new Date(1991,11,6)));
+
+    let element = document.getElementById("camera-service");
+    console.log(element.classList);
+    element.classList.remove("service");
+    console.log(element.classList)
+
+    let paragraph = document.createElement("p");
+    paragraph.appendChild(document.createTextNode("I'm a new paragraph " + getAge(new Date(1991,11,11))));
+    paragraph.classList.add("red_text");
+    element.appendChild(paragraph);
+    
+    function getAge(date){
+      const msDifference = Date.now() - date.getTime();
+      const age_difference = new Date(msDifference);
+      return Math.abs(age_difference.getUTCFullYear() - 1970)
+    }
+
+    const qualifications = [5,2,3,7,8,9,10,11,1,10,12,8,7,5];
+
+    let pass = 0, exceedsExpectations = 0, total = 0, failed = 0, counter = 0;
+
+    console.log(qualifications.filter(value => value > 5))
+
+    qualifications.forEach(value =>{
+      if(value >= 10 ){
+        exceedsExpectations ++;
+      } else if(value >= 6){
+        pass ++;
+      } else {
+        failed += 1;
+      }
+      total += value;
+    })
+
+   // qualifications.
+
+ /*   while(counter < qualifications.length){
+      let individualQualificationValue = qualifications[counter];
+      if(individualQualificationValue >= 10 ){
+        exceedsExpectations ++;
+      } else if(individualQualificationValue >= 6){
+        pass ++;
+      } else {
+        failed += 1;
+      }
+      total += individualQualificationValue;
+      counter = counter + 1;
+    }
+*/
+    console.log(`El promedio es ${total/qualifications.length}`)
+    console.log(`El total que superan expectativas es ${exceedsExpectations}`);
+    console.log(`El total de aprobados es ${pass}`);
+    console.log("El total de reprobados es " + failed);
+
   </script>
 </html>
