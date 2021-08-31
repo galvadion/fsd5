@@ -212,7 +212,7 @@
 
     console.log(qualifications.filter(value => value > 5))
 
-    qualifications.forEach(value =>{
+  /*  qualifications.forEach(value =>{
       if(value >= 10 ){
         exceedsExpectations ++;
       } else if(value >= 6){
@@ -223,9 +223,9 @@
       total += value;
     })
 
-   // qualifications.
+   // qualifications.*/
 
- /*   while(counter < qualifications.length){
+    while(counter < qualifications.length){
       let individualQualificationValue = qualifications[counter];
       if(individualQualificationValue >= 10 ){
         exceedsExpectations ++;
@@ -237,11 +237,33 @@
       total += individualQualificationValue;
       counter = counter + 1;
     }
-*/
+
     console.log(`El promedio es ${total/qualifications.length}`)
     console.log(`El total que superan expectativas es ${exceedsExpectations}`);
     console.log(`El total de aprobados es ${pass}`);
     console.log("El total de reprobados es " + failed);
+
+    const numbers = [5,15,33,35,50,30,60,4,100,10,15,12,17,25];
+
+    let divisiblesByFive = []
+    let divisiblesByThree = []
+    let divisiblesByFiveAndThree = []
+
+    numbers.forEach(item =>{
+      if(item % 3 == 0 && item % 5 == 0){
+        divisiblesByFiveAndThree.push(item);
+      } else if(item % 5 == 0){
+        divisiblesByFive.push(item);
+      } else if(item % 3 == 0){
+        divisiblesByThree.push(item);
+      }
+    })
+
+    console.log(`El total de divisibles entre 5 es ${divisiblesByFive.length} `)
+    console.log(`El total de divisibles entre 3 es ${divisiblesByThree.length} `)
+    console.log(`El total de divisibles entre 3 y 5 es ${divisiblesByFiveAndThree.length} `)
+
+
 
   </script>
 </html>

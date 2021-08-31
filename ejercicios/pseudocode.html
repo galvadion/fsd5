@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        .calculator {
+            width: 400px;
+            height: 800px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 5fr;
+            gap: 20px
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(5,1fr);
+            gap:20px;
+        }
+        input{
+            width: 100%;
+            height: 100%;
+            text-align: right;
+            font-size: 5rem;
+        }
+        #cero {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<html>
+    <div class="calculator">
+        <div>
+            <input type="text" disabled="true"/>
+        </div>
+        <div class="buttons">
+            <button>AC</button>
+            <button>C</button>
+            <button>%</button>
+            <button>/</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>X</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>+</button>
+            <button id="cero">0</button>
+            <button>,</button>
+            <button>=</button>
+        </div>
+    </div>
+</html>
+<body>
+    <script>
+        // -b +- sqroot(bˆ2 - 4ac )/2a
+
+        const discriminante = (a,b,c) => b*b - 4*a*c;
+
+        function bhaskara(a,b,c){
+            if(a==0){
+                return "Not a second degree function, go back to school. AMEGO"
+            }
+            else if(discriminante(a,b,c) > 0){
+                return [(-b + Math.sqrt(discriminante(a,b,c)))/2*a,(-b - Math.sqrt(discriminante(a,b,c)))/2*a]
+            }else if(discriminante(a,b,c) == 0){
+                return (-b/2*a);
+            }else{
+                return 'Not a valid function'
+            }
+        }
+
+        // 25+35 
+        function calculateResult(text){
+            console.log(text.split('+'))
+            let contador = 0;
+            let total = 0;
+            
+            while(contador < text.split('+').length){ // [25,10,10].length = 3
+                total += parseInt(text.split('+')[contador]) // 25 = 25+0   35 =25+ 10 45= 35+ 10
+                contador ++; // 1, 2, 3
+            }
+
+            return total; // 45
+        }
+
+        
+        console.log(calculateResult("25+35"))
+        console.log(calculateResult("25+50"))
+        console.log(calculateResult("25+10+10"))
+
+    </script>
+</body>
+</html>
