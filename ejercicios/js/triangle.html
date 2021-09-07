@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .isosceles-box{
+            background-color: beige;
+        }
+        .scalene-box {
+            background-color: burlywood;
+        }
+        .equilateral-box{
+            background-color: saddlebrown;
+        }
+
+        .error-box{
+            background-color: red;
+            color: white;
+            font-size: larger;
+        }
+    </style>
+
+</head>
+<body>
+    <section>
+        <form>
+            <input name="sideA" type="number" id="sideA" placeholder="side A"/>
+            <input name="sideB" type="number" id="sideB" placeholder="side B"/>
+            <input name="sideC" type="number" id="sideC" placeholder="side C"/>
+            <button type="button" onclick="getTriangle()" >Calcular</button>
+            <div id="message">
+
+            </div>
+        </form>
+    </section>
+    <section id="holder">
+
+    </section>
+    <script>
+
+        const isIsosceles = (triangle) => triangle.sideA == triangle.sideB || triangle.sideB == triangle.sideC || triangle.sideA == triangle.sideC
+
+        const isEquilateral = (triangle) => triangle.sideA == triangle.sideB && triangle.sideA == triangle.sideC
+
+        const isScalene = (triangle) => triangle.sideA != triangle.sideB && triangle.sideB != triangle.sideC
+
+        const addEquilateralBox = (triangle) => {
+            const equilateralBox = document.createElement("div"); // <div></div> -> sin colocarlo en el html
+            const text = document.createTextNode(`The triangle ${triangle.sideA},${triangle.sideB},${triangle.sideC} is equilateral`) // "The triangle 2,2,2 is equilateral"
+            equilateralBox.appendChild(text) // <div>The triangle 2,2,2 is equilateral </div
+            equilateralBox.classList.add('equilateral-box') // <div class="equilateral-box">The triangle 2,2,2 is equilateral </div>
+            const holder = document.getElementById('holder') 
+            holder.appendChild(equilateralBox) /*
+                <section id="holder">
+                    <div class="equilateral-box">The triangle 2,2,2 is equilateral </div>
+                </section>
+            */
+        }
+
+        const addIsoscelesBox = (triangle) => {
+            const isoscelesBox = document.createElement("div");
+            const text = document.createTextNode(`The triangle ${triangle.sideA},${triangle.sideB},${triangle.sideC} is isosceles`)
+            isoscelesBox.appendChild(text)
+            isoscelesBox.classList.add('isosceles-box')
+            const holder = document.getElementById('holder')
+            holder.appendChild(isoscelesBox)
+        }
+
+        const addScaleneBox = (triangle) => {
+            const scaleneBox = document.createElement("div");
+            const text = document.createTextNode(`The triangle ${triangle.sideA},${triangle.sideB},${triangle.sideC} is scalene`)
+            scaleneBox.appendChild(text)
+            scaleneBox.classList.add('scalene-box')
+            const holder = document.getElementById('holder')
+            holder.appendChild(scaleneBox)
+        }
+
+        const addErrorMessage = (triangle) => {
+            const scaleneBox = document.createElement("div");
+            const text = document.createTextNode(`The triangle ${triangle.sideA},${triangle.sideB},${triangle.sideC} is not valid`)
+            scaleneBox.appendChild(text)
+            scaleneBox.id = "error";
+            scaleneBox.classList.add('error-box')
+            const holder = document.getElementById('message')
+            holder.appendChild(scaleneBox)
+        }
+
+        let hasError = false;
+
+        const isNotAValidTriangle = (triangle) => triangle.sideA < 0 || triangle.sideB < 0 || triangle.sideC < 0
+
+        const cleanError = () => {
+            const holder = document.getElementById('message')
+            holder.removeChild(document.getElementById("error"))
+            hasError = false;
+        }
+
+        function getTriangle(){
+            if(hasError){
+                cleanError()
+            }
+            let sideA =  parseInt(document.getElementById("sideA").value)
+            let sideB =  parseInt(document.getElementById("sideB").value)
+            let sideC =  parseInt(document.getElementById("sideC").value)
+            let triangle = {
+                sideA: sideA,
+                sideB: sideB,
+                sideC: sideC
+            }
+            if(isNotAValidTriangle(triangle)){
+                hasError = true;
+                addErrorMessage(triangle);
+            }else{
+                if(isEquilateral(triangle)){
+                    addEquilateralBox(triangle)
+                }else if(isIsosceles(triangle)){
+                    addIsoscelesBox(triangle)
+                }else if(isScalene(triangle)){
+                    addScaleneBox(triangle)
+                }else {
+                    console.log("Get out of here you are drunk")
+                }
+            }
+            
+        }
+
+    </script>
+</body>
+</html>
