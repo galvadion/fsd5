@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .isosceles-box{
+            background-color: beige;
+        }
+        .scalene-box {
+            background-color: burlywood;
+        }
+        .equilateral-box{
+            background-color: saddlebrown;
+        }
+
+        .error-box{
+            background-color: red;
+            color: white;
+            font-size: larger;
+        }
+        .error{
+            color:red;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <form>
+            <input name="username" id="username" placeholder="username"/>
+            <span id="usernameError" class="error"></span>
+            <input name="email"  id="email" placeholder="email"/>
+            <span id="emailError" class="error"></span>
+            <input name="password" type="password" id="password" placeholder="Insert password"/>
+            <span id="passwordError" class="error"></span>
+            <div id="message">
+
+            </div>
+        </form>
+    </section>
+    <section id="holder">
+        
+
+    </section>
+    <script>
+
+
+        const validatePassword = (param) => {
+            console.log(param)
+            let password = document.getElementById('password').value
+            let mayusRegEx = new RegExp('[A-Z]', 'gm');
+            let minusRegEx = new RegExp('[a-z]', 'gm');
+            let numberRegEx = new RegExp('\\d', 'gm');
+            let message = ''
+            let hasError = false;
+            if(password.length < 8){
+                //document.getElementById('passwordError').appendChild(document.createTextNode("La contraseña es muy chica"))
+               // document.getElementById('passwordError').classList.remove('hidden')
+               message = "La contraseña es muy chica <br>"
+               hasError=true;
+            }
+            if(!mayusRegEx.test(password)){
+                message += " La contraseña debe incluir una mayúscula <br>"
+                hasError = true
+            }
+            if(!minusRegEx.test(password)){
+                message += " La contraseña debe incluir una minúscula <br>"
+                hasError = true
+            }
+            if(!numberRegEx.test(password)){
+                message += " La contraseña debe incluir un número <br>"
+                hasError = true
+            }
+            console.log(hasError)
+            if(!hasError){
+                message = ''
+                // document.getElementById('passwordError').classList.add('hidden')
+            }
+            document.getElementById('passwordError').innerHTML = message
+            
+        }
+        
+        let users = ['pepito','menganito','fulanito']
+
+        const checkIfExist = () =>{
+            if(users.includes(document.getElementById('username').value)){
+                console.log('Ya existe un usuario')
+            }
+        }
+
+        document.getElementById('username').addEventListener('keyup', function onEvent(e) {
+            if (e.keyCode === 13) {
+                console.log('Enter')
+            }
+        });
+
+
+        document.getElementById('password').addEventListener('keyup',validatePassword)
+
+        document.getElementById('email').addEventListener('keyup',validateEmail)
+
+        document.getElementById('username').addEventListener('blur',checkIfExist)
+
+    //  const validatePattern = () => /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(document.getElementById('email').value)
+
+        function validateEmail(){
+            if(validateEmailPattern()){
+                document.getElementById('emailError').innerHTML = ''
+            }else {
+                document.getElementById('emailError').innerHTML = 'Este correo no es valido'
+            }
+        }
+
+        function validateEmailPattern(){      
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return emailPattern.test(document.getElementById('email').value); 
+        } 
+
+
+        /*
+            function validateEmail(){
+                let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                if(emailPattern.test(document.getElementById('email').value)){
+                    document.getElementById('emailError').innerHTML = ''
+                }else {
+                    document.getElementById('emailError').innerHTML = 'Este correo no es valido'
+                }
+            }
+        */
+    </script>
+</body>
+</html>

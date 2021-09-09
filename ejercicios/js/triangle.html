@@ -53,11 +53,27 @@
     </section>
     <script>
 
+
+
+
         const isIsosceles = (triangle) => triangle.sideA == triangle.sideB || triangle.sideB == triangle.sideC || triangle.sideA == triangle.sideC
 
         const isEquilateral = (triangle) => triangle.sideA == triangle.sideB && triangle.sideA == triangle.sideC
 
         const isScalene = (triangle) => triangle.sideA != triangle.sideB && triangle.sideB != triangle.sideC
+
+        const addErrorBox = () => {
+            const equilateralBox = document.createElement("div"); // <div></div> -> sin colocarlo en el html
+            const text = document.createTextNode(`Ese valor es más de lo esperado`) // "The triangle 2,2,2 is equilateral"
+            equilateralBox.appendChild(text) // <div>The triangle 2,2,2 is equilateral </div
+            equilateralBox.classList.add('equilateral-box') // <div class="equilateral-box">The triangle 2,2,2 is equilateral </div>
+            const holder = document.getElementById('holder') 
+            holder.appendChild(equilateralBox) /*
+                <section id="holder">
+                    <div class="equilateral-box">The triangle 2,2,2 is equilateral </div>
+                </section>
+            */
+        }
 
         const addEquilateralBox = (triangle) => {
             const equilateralBox = document.createElement("div"); // <div></div> -> sin colocarlo en el html
@@ -138,6 +154,16 @@
             }
             
         }
+
+        document.getElementById('sideA').addEventListener('keyup',()=> console.log('Side A - 1'));
+        document.getElementById('sideA').addEventListener('keyup',function(){
+            if(document.getElementById('sideA').value > 10){
+                document.getElementById('sideA').value = 10
+                addErrorBox()
+            }
+        });
+
+        console.log(Math.pow(2,2))
 
     </script>
 </body>
