@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <input id="searchBar">
+        <section id="searchPlace">
+
+        </section>
+        <script src="domain/product.js"></script>
+        <script src="domain/offer.js"></script>
+        <script>
+        let products = [new Product(1, 'Shampoo', 'Con esto te limpias el pelo y queda joya', 100, 5, null),
+            new Product(2, 'Pizza congelada', 'Con esto tus clientes te adoran', 200, 3, null),
+            new Product(3, 'loren ipsum', 'Sit amet', 10000, 100, 
+            new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre')
+            ),
+            new Product(4, 'Gift Card', 'Para regalar y regalarse, para el bolsillo de la dama y ' + 
+            'cartera del caballero', 600, -1, null),
+        ]
+
+        products.forEach(value => {
+            console.log(`Producto ${value.name} con stock de ${value.stock}`)
+            console.log("Tiene oferta? ",value.hasValidOffer());
+            console.log(`Precio actual ${value.price},
+            ${value.hasValidOffer() ? `con oferta: ${value.modifiedPriceByOffer()}` : '' }`)
+        })
+
+        function searchProduct(){
+            let input = document.getElementById('searchBar').value
+            let filteredProducts = []
+            if(input.length !== 0){
+                filteredProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(input.toLowerCase()) || 
+                    product.description.toLowerCase().includes(input.toLowerCase()) || 
+                    product.id == input
+                )
+                console.log(filteredProducts)
+            }
+
+            let holder = document.getElementById('searchPlace')
+
+            holder.innerHTML = ''
+
+            filteredProducts.forEach(product => {
+                let productElement = document.createElement('div')
+                productElement.innerHTML = product.name
+                holder.appendChild(productElement)
+            })
+        }
+
+        document.getElementById('searchBar').addEventListener('keyup',searchProduct)
+
+    </script>
+    </body>
+</html>
