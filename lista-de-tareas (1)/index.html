@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de tareas</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <h1>Lista de tareas!</h1>
+
+      <form action="javascript:void(0);">
+        <input
+          id="tarea"
+          type="text"
+          name="tarea"
+          placeholder="Descripción de la tarea"
+        />
+        <select name="prioridad" id="prioridad">
+          <option value="" disabled selected>Prioridad</option>
+          <option value="prioridad-baja">baja</option>
+          <option value="prioridad-media">media</option>
+          <option value="prioridad-alta">alta</option>
+        </select>
+        <button id="agregar">Agregar!</button>
+      </form>
+      <span id="error-message"> </span>
+      <h3>Tareas</h3>
+      <ul id="lista-tareas">
+       
+      </ul>
+
+      <p>
+        Para agregar tareas vamos a tener que hablar de eventos, el DOM y cómo
+        interactuar con él
+      </p>
+    </main>
+    <script src="./task.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
