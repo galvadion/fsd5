@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body onresize="myFunction()">
     <main>
       <h1>Lista de tareas!</h1>
 
@@ -32,7 +32,6 @@
       <span id="error-message"> </span>
       <h3>Tareas</h3>
       <ul id="lista-tareas">
-       
       </ul>
 
       <p>
@@ -42,5 +41,10 @@
     </main>
     <script src="./task.js"></script>
     <script src="./index.js"></script>
+    <script>
+      function myFunction() {
+          console.log('func')
+      }
+    </script>
   </body>
 </html>

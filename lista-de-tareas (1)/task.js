@@ -1,14 +1,19 @@
 class Task{
-    constructor(task,priority){
-        this.task = task,
-        this.priority = priority
+    constructor(description,priority){
+        this.description = description,
+        this.priority = priority,
+        this.id = sequencer
+        sequencer++
     }
 
     priorityOrder(){
-        if(this.priority == 'prioridad-baja'){
-            return 1
-        }else if (this.priority == 'prioridad-media'){
-            return 2
-        }else return 3
+        return map.get(this.priority)
     }
 }
+let sequencer = 1;
+
+const map = new Map()
+
+map.set('prioridad-baja',1)
+map.set('prioridad-media',2)
+map.set('prioridad-alta',3)

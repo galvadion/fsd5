@@ -1,4 +1,3 @@
-
 const descriptionField = document.getElementById('tarea')
 const priorityField = document.getElementById('prioridad')
 const button = document.getElementById('agregar')
@@ -7,16 +6,28 @@ const errorHolder = document.getElementById('error-message')
 
 let tasks = []
 
-const createNewTask = (description, priority) => {
+const createNewTask = (task) => {
 
     const newTask = document.createElement('li')
 
-    newTask.textContent = description
+    const icon = document.createElement('span')
+    icon.innerHTML = 'X'
+    icon.classList.add('feather')
+    icon.addEventListener('click',() => removeElement(newTask,task.id))
 
-    newTask.classList.add(priority)
+    newTask.textContent = task.description
+
+    newTask.appendChild(icon)
+
+    newTask.classList.add(task.priority)
 
     taskList.appendChild(newTask)
+}
 
+const cleanFields = () => {
+    descriptionField.value = ''
+    priorityField.value = ''
+    errorHolder.innerHTML = ''
 }
 
 button.addEventListener('click',() => {
@@ -24,12 +35,23 @@ button.addEventListener('click',() => {
             taskList.innerHTML = ''
             tasks.push(new Task(descriptionField.value,priorityField.value))
             tasks = tasks.sort((a,b)=> b.priorityOrder() - a.priorityOrder())
-            tasks.forEach(task => createNewTask(task.task,task.priority) )
-            descriptionField.value = ''
-            priorityField.value = ''
-            errorHolder.innerHTML = ''
+            tasks.forEach(task => createNewTask(task) )
+            cleanFields()
         }else{
             errorHolder.innerHTML = 'Falto o escribir descripción o seleccionar prioridad'
         }
     }
 )
+
+function removeElement(element,id){
+    element.remove();
+    tasks = tasks.filter(task => task.id != id)
+}
+
+window.resize = event => {
+    console.log(event)
+  };
+
+function myFunction() {
+    console.log('func')
+}

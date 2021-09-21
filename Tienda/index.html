@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>E-Store single page layout | Script Tutorials</title>
+    <meta charset="utf-8">
+
+    <!-- Linking styles -->
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen">
+
+    <!-- Linking scripts -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.nivo.slider.pack.js"></script>
+    <script src="js/main.js"></script>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <!-- Defining the header section of the page -->
+
+            <nav>
+                <!-- Defining the navigation menu -->
+                <ul>
+                    <li class="selected"><a href="#">Home</a></li>
+                    <li><a href="#">Specials</a></li>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="http://www.script-tutorials.com/creating-new-html5css3-single-page-layout-e-store/">Back To Tutorial</a></li>
+                </ul>
+            </nav>
+
+
+            <div class="top_head">
+                <!-- Defining the top head element -->
+                <div class="logo">
+                    <!-- Defining the logo element -->
+                    <a href="http://www.script-tutorials.com/">
+                        <img src="images/logo.jpg" title="E-Store template" alt="E-Store template" />
+                    </a>
+                </div>
+
+                <section id="search">
+                    <!-- Search form -->
+                    <form action="#" onsubmit="return false;" method="get">
+                        <input type="text" id="searchBar" onfocus="if (this.value =='Search..' ) this.value=''" onblur="if (this.value=='') this.value='Search..'" value="Search.." name="q">
+                        <input type="submit" value="Search">
+                    </form>
+
+                    <ul id="social">
+                        <!-- Social profiles links -->
+                        <li>
+                            <a href="#" title="facebook" rel="external nofollow"><img alt="" src="images/facebook.png"></a>
+                        </li>
+                        <li>
+                            <a href="#" title="twitter" rel="external nofollow"><img alt="" src="images/twitter.png"></a>
+                        </li>
+                        <li>
+                            <a href="#" title="linkedin" rel="external nofollow"><img alt="" src="images/linkedin.png"></a>
+                        </li>
+                        <li>
+                            <a href="#" title="rss" rel="external nofollow"><img alt="" src="images/rss.png"></a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <section id="submenu">
+                <!-- Defining the sub menu -->
+                <ul id="categories-holder">
+                </ul>
+            </section>
+
+        </header>
+
+        <div id="slider">
+            <!-- Defining the main content section -->
+
+            <!-- Promo slider -->
+            <section id="slider-wrapper">
+                <div id="slider" class="nivoSlider">
+                    <img style="display: none;" src="images/promo1.jpg" alt="" title="#htmlcaption-1">
+                    <img style="display: none;" src="images/promo2.jpg" alt="" title="#htmlcaption-2">
+                    <img style="display: none;" src="images/promo3.jpg" alt="" title="#htmlcaption-3">
+                </div>
+                <div id="htmlcaption-1" class="nivo-html-caption">
+                    <h5 class="p2">Welcome to the our E-Shop</h5>
+                    <p>Put any description here</p>
+                </div>
+                <div id="htmlcaption-1" class="nivo-html-caption">
+                    <h5 class="p2">This is promo area</h5>
+                    <p>Put any description here</p>
+                </div>
+                <div id="htmlcaption-2" class="nivo-html-caption">
+                    <h5 class="p2">Where you can add any feature products</h5>
+                    <p>Put any description here</p>
+                </div>
+                <div id="htmlcaption-3" class="nivo-html-caption">
+                    <h5 class="p2">Or something else</h5>
+                    <p>Put any description here</p>
+                </div>
+            </section>
+        </div>
+
+        <div id="main">
+            <!-- Defining submain content section -->
+            <section id="content">
+                <!-- Defining the content section #2 -->
+                <div id="left">
+                    <h3>Last products</h3>
+                    <div id='product-holder'>
+                    </div>
+                </div>
+                <div id="right">
+                    <h3>Top sells</h3>
+                    <ul id="offer-holder">
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <!-- Defining the footer section of the page -->
+            <div id="privacy">
+                E-Store template © 2011 <a class="link" href="http://www.script-tutorials.com/">Privacy Policy</a><br />
+                <a class="link" href="http://www.script-tutorials.com/creating-new-html5css3-single-page-layout-e-store/">Template by Script Tutorials</a>
+            </div>
+        </footer>
+        <script src="js/domain/product.js"></script>
+        <script src="js/domain/offer.js"></script>
+        <script>
+            const productHolder = document.getElementById('product-holder');
+            const offerHolder = document.getElementById('offer-holder')
+            const categoriesHolder = document.getElementById('categories-holder')
+
+            let categories = ['Higiene', 'Comida', 'Artículo', 'Gato', 'Random']
+
+            categories.forEach(category => {
+                    categoriesHolder.innerHTML += `<li><a href="#" onclick='filterByCategory("${category}")'>${category}</a></li>`
+                }) // categoriesHolder.innerHTML =  categoriesHolder.innerHTML + `<li><a href="#">${category}</a></li>`
+
+            productHolder.innerHTML = ''
+            offerHolder.innerHTML = ''
+
+            let products = [
+                new Product(1, 'Shampoo', 'Con esto te limpias el pelo y queda joya', 100, 5, null, 'Higiene'),
+                new Product(2, 'Pizza congelada', 'Con esto tus clientes te adoran', 200, 3, null, 'Comida'),
+                new Product(3, 'Gift Card', 'Para regalar y regalarse, para el bolsillo de la dama y ' +
+                    'cartera del caballero', 600, -1, null, 'Random'),
+                new Product(4, 'loren ipsum', 'Sit amet', 10000, 100,
+                    new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Random'
+                ),
+                new Product(5, 'Gift Carc', 'Para regalar y regalarse, para el bolsillo de la dama y ' +
+                    'cartera del caballero', 600, -1, null, 'Random'),
+                new Product(6, 'Shampoo Ultrawash', 'Con esto el pelo te quedo gris', 500, 2, null, 'Higiene'),
+                new Product(7, 'Empanadas caprese', 'Empanadas de atún', 50, 50, new Offer(2, new Date(2025, 10, 05), 0.20, false, 'Aprovechame ahora', 'Comida')),
+                new Product(8, 'fafafa', 'fafafafafafa', 600, -1, null, 'Random'),
+                new Product(9, 'falafel', 'falafel', 20, 100,
+                    new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Comida'
+                ), new Product(10, 'Sake', 'Un gato fachero facherito.', 200, -1, null, 'Gato')
+            ]
+            let filteredProducts = products;
+
+            products
+                .filter(product => !product.hasValidOffer())
+                .forEach(product => {
+                    productHolder.innerHTML += product.asInnerHTMLForMainList()
+                })
+
+            products
+                .filter(product => product.hasValidOffer())
+                .forEach(product => {
+                    offerHolder.innerHTML += product.asInnerHTMLForOfferList()
+                })
+
+            function searchProduct() {
+                let input = document.getElementById('searchBar').value
+                if (input.length !== 0) {
+                    filteredProducts = products.filter(product =>
+                        product.name.toLowerCase().includes(input.toLowerCase()) ||
+                        product.description.toLowerCase().includes(input.toLowerCase()) ||
+                        product.id == input
+                    )
+                } else {
+                    filteredProducts = products
+                }
+
+                productHolder.innerHTML = ''
+
+                filteredProducts
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .forEach(product => {
+                        productHolder.innerHTML += product.asInnerHTMLForMainList()
+                    })
+            }
+
+            function filterByCategory(category) {
+                productHolder.innerHTML = ''
+                filteredProducts = products.filter(product => product.category == category)
+                filteredProducts.forEach(product => {
+                    productHolder.innerHTML += product.asInnerHTMLForMainList()
+                })
+            }
+
+            document.getElementById('searchBar').addEventListener('keyup', searchProduct)
+        </script>
+    </div>
+</body>
+
+</html>
