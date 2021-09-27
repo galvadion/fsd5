@@ -202,12 +202,12 @@ nav ul li.selected a {
     border: 1px solid #E9E9E9;
     float: left;
     margin: 0 2%;
-    width: 63%;
+    width: 50%;
 }
 
 #content #right {
     margin-left: 0;
-    width: 30%;
+    width: 42%;
 }
 
 #content h3 {
@@ -403,4 +403,13 @@ footer #privacy {
 footer a {
     color: #9B9B9B;
     text-decoration: none;
+}
+
+#cart-holder li {
+    display: flex;
+    justify-content: space-around;
+}
+
+#right p {
+    float: right;
 }

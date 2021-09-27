@@ -53,8 +53,8 @@
                 <section id="search">
                     <!-- Search form -->
                     <form action="#" onsubmit="return false;" method="get">
-                        <input type="text" id="searchBar" onfocus="if (this.value =='Search..' ) this.value=''" onblur="if (this.value=='') this.value='Search..'" value="Search.." name="q">
-                        <input type="submit" value="Search">
+                        <input type="text" id="searchBar" onfocus="if (this.cartLine =='Search..' ) this.cartLine=''" onblur="if (this.cartLine=='') this.cartLine='Search..'" cartLine="Search.." name="q">
+                        <input type="submit" cartLine="Search">
                     </form>
 
                     <ul id="social">
@@ -122,9 +122,11 @@
                     </div>
                 </div>
                 <div id="right">
-                    <h3>Top sells</h3>
-                    <ul id="offer-holder">
+                    <h3>Mini cart</h3>
+                    <ul id="cart-holder">
+
                     </ul>
+                    <p>Total: $<span id="total-holder">0</span></p>
                 </div>
             </section>
         </div>
@@ -138,79 +140,41 @@
         </footer>
         <script src="js/domain/product.js"></script>
         <script src="js/domain/offer.js"></script>
+        <script src="js/domain/categories.js"></script>
+        <script src="js/domain/cart.js"></script>
+        <script src="js/services/searchBar.js"></script>
         <script>
+            //   Defino como constantes, los "holders" donde va a ir colocado   
+            //    el código HTML que se generara de forma dinámica 
             const productHolder = document.getElementById('product-holder');
-            const offerHolder = document.getElementById('offer-holder')
-            const categoriesHolder = document.getElementById('categories-holder')
+            //  const offerHolder = document.getElementById('offer-holder')
+            const cartHolder = document.getElementById('cart-holder')
+            const totalHolder = document.getElementById('total-holder')
 
-            let categories = ['Higiene', 'Comida', 'Artículo', 'Gato', 'Random']
+            // inicializamos el total en 0
+            let total = 0;
 
-            categories.forEach(category => {
-                    categoriesHolder.innerHTML += `<li><a href="#" onclick='filterByCategory("${category}")'>${category}</a></li>`
-                }) // categoriesHolder.innerHTML =  categoriesHolder.innerHTML + `<li><a href="#">${category}</a></li>`
+            // inicializamos una colección (array, lista, arreglo) de productos. Definida en otro archivo
+            let products = initializeProducts()
 
-            productHolder.innerHTML = ''
-            offerHolder.innerHTML = ''
-
-            let products = [
-                new Product(1, 'Shampoo', 'Con esto te limpias el pelo y queda joya', 100, 5, null, 'Higiene'),
-                new Product(2, 'Pizza congelada', 'Con esto tus clientes te adoran', 200, 3, null, 'Comida'),
-                new Product(3, 'Gift Card', 'Para regalar y regalarse, para el bolsillo de la dama y ' +
-                    'cartera del caballero', 600, -1, null, 'Random'),
-                new Product(4, 'loren ipsum', 'Sit amet', 10000, 100,
-                    new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Random'
-                ),
-                new Product(5, 'Gift Carc', 'Para regalar y regalarse, para el bolsillo de la dama y ' +
-                    'cartera del caballero', 600, -1, null, 'Random'),
-                new Product(6, 'Shampoo Ultrawash', 'Con esto el pelo te quedo gris', 500, 2, null, 'Higiene'),
-                new Product(7, 'Empanadas caprese', 'Empanadas de atún', 50, 50, new Offer(2, new Date(2025, 10, 05), 0.20, false, 'Aprovechame ahora', 'Comida')),
-                new Product(8, 'fafafa', 'fafafafafafa', 600, -1, null, 'Random'),
-                new Product(9, 'falafel', 'falafel', 20, 100,
-                    new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Comida'
-                ), new Product(10, 'Sake', 'Un gato fachero facherito.', 200, -1, null, 'Gato')
-            ]
             let filteredProducts = products;
 
+            // Renderizamos los productos en pantalla, filtrando por aquellos que no tienen una oferta valida
             products
                 .filter(product => !product.hasValidOffer())
                 .forEach(product => {
                     productHolder.innerHTML += product.asInnerHTMLForMainList()
                 })
 
-            products
-                .filter(product => product.hasValidOffer())
-                .forEach(product => {
-                    offerHolder.innerHTML += product.asInnerHTMLForOfferList()
-                })
+            /* 
+             products
+                 .filter(product => product.hasValidOffer())
+                 .forEach(product => {
+                     offerHolder.innerHTML += product.asInnerHTMLForOfferList()
+                 })
+             */
 
-            function searchProduct() {
-                let input = document.getElementById('searchBar').value
-                if (input.length !== 0) {
-                    filteredProducts = products.filter(product =>
-                        product.name.toLowerCase().includes(input.toLowerCase()) ||
-                        product.description.toLowerCase().includes(input.toLowerCase()) ||
-                        product.id == input
-                    )
-                } else {
-                    filteredProducts = products
-                }
-
-                productHolder.innerHTML = ''
-
-                filteredProducts
-                    .sort((a, b) => a.name.localeCompare(b.name))
-                    .forEach(product => {
-                        productHolder.innerHTML += product.asInnerHTMLForMainList()
-                    })
-            }
-
-            function filterByCategory(category) {
-                productHolder.innerHTML = ''
-                filteredProducts = products.filter(product => product.category == category)
-                filteredProducts.forEach(product => {
-                    productHolder.innerHTML += product.asInnerHTMLForMainList()
-                })
-            }
+            let cart = []
 
             document.getElementById('searchBar').addEventListener('keyup', searchProduct)
         </script>
