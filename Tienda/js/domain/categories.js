@@ -11,6 +11,7 @@ categories.forEach(category => {
 
 function filterByCategory(category) {
     productHolder.innerHTML = ''
+    sliderEl.classList.toggle('hidden')
     filteredProducts = products.filter(product => product.category == category)
     filteredProducts.forEach(product => {
         productHolder.innerHTML += product.asInnerHTMLForMainList()

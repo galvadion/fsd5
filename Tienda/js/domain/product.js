@@ -1,5 +1,5 @@
     class Product { // Representación de algo del mundo real.
-        constructor(id, name, description, price, stock, offer, category) {
+        constructor(id, name, description, price, stock, offer, category, img) {
             this.id = id
             this.name = name
             this.description = description
@@ -7,6 +7,7 @@
             this.stock = stock
             this.offer = offer
             this.category = category
+            this.img = img
         }
 
         hasValidOffer() {
@@ -25,7 +26,7 @@
             return (
                 `<span class="product">
                             <div class="img">
-                                <a href="#"><img alt="${this.name}" src="images/post${this.id}.jpg"></a>
+                                <a href="#"><img alt="${this.name}" src="${this.img}"></a>
                             </div>
                             <div class="info">
                                 <a class="title" href="#">${this.name}</a>
@@ -45,38 +46,38 @@
         asInnerHTMLForOfferList() {
             return (
                 `<li>
-                            <div class="img">
-                                <a href="#"><img alt="${this.name}" src="images/post${this.id}.jpg"></a>
-                            </div>
-                            <div class="info">
-                                <a class="title" href="#">${this.name}</a>
-                                <div class="price">
-                                    <span class="usual">$${this.price} </span>&nbsp;
-                                    <span class="special">$${this.modifiedPriceByOffer()}</span>
-                                </div>
-                            </div>
-                        </li>`
+                    <div class="img">
+                        <a href="#"><img alt="${this.name}" src="images/post${this.id}.jpg"></a>
+                    </div>
+                    <div class="info">
+                        <a class="title" href="#">${this.name}</a>
+                        <div class="price">
+                            <span class="usual">$${this.price} </span>&nbsp;
+                            <span class="special">$${this.modifiedPriceByOffer()}</span>
+                        </div>
+                    </div>
+                </li>`
             )
         }
     }
 
     function initializeProducts() {
         return [
-            new Product(1, 'Shampoo', 'Con esto te limpias el pelo y queda joya', 100, 5, null, 'Higiene'),
-            new Product(2, 'Pizza congelada', 'Con esto tus clientes te adoran', 200, 3, null, 'Comida'),
+            new Product(1, 'Shampoo', 'Con esto te limpias el pelo y queda joya', 100, 5, null, 'Higiene', 'images/post1.jpg'),
+            new Product(2, 'Pizza congelada', 'Con esto tus clientes te adoran', 200, 3, null, 'Comida', 'images/post2.jpg'),
             new Product(3, 'Gift Card', 'Para regalar y regalarse, para el bolsillo de la dama y ' +
-                'cartera del caballero', 600, -1, null, 'Random'),
+                'cartera del caballero', 600, -1, null, 'Random', 'images/post3.jpg'),
             new Product(4, 'loren ipsum', 'Sit amet', 10000, 100,
-                new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Random'
+                new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Random', 'images/post4.jpg'
             ),
             new Product(5, 'Gift Carc', 'Para regalar y regalarse, para el bolsillo de la dama y ' +
-                'cartera del caballero', 600, -1, null, 'Random'),
-            new Product(6, 'Shampoo Ultrawash', 'Con esto el pelo te quedo gris', 500, 2, null, 'Higiene'),
-            new Product(7, 'Empanadas caprese', 'Empanadas de atún', 50, 50, new Offer(2, new Date(2025, 10, 05), 0.20, false, 'Aprovechame ahora', 'Comida')),
-            new Product(8, 'fafafa', 'fafafafafafa', 600, -1, null, 'Random'),
+                'cartera del caballero', 600, -1, null, 'Random', 'images/post5.jpg'),
+            new Product(6, 'Shampoo Ultrawash', 'Con esto el pelo te quedo gris', 500, 2, null, 'Higiene', 'images/post1.jpg'),
+            new Product(7, 'Empanadas caprese', 'Empanadas de atún', 50, 50, new Offer(2, new Date(2025, 10, 05), 0.20, false, 'Aprovechame ahora'), 'Comida', 'images/post2.jpg'),
+            new Product(8, 'fafafa', 'fafafafafafa', 600, -1, null, 'Random', 'images/post4.jpg'),
             new Product(9, 'falafel', 'falafel', 20, 100,
-                new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Comida'
-            ), new Product(10, 'Sake', 'Un gato fachero facherito.', 200, -1, null, 'Gato')
+                new Offer(1, new Date(2025, 10, 05), 0.50, false, 'Mitad de precio siempre'), 'Comida', 'images/post2.jpg'
+            ), new Product(10, 'Sake', 'Un gato fachero facherito.', 200, -1, null, 'Gato', 'images/post4.jpg')
         ]
     }
 
