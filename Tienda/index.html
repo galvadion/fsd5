@@ -164,18 +164,22 @@
             fetch("http://localhost:4000/products", {
                     method: 'GET', // GET, PUT, POST, PATCH, DELETE
                 })
-                .then(data => data.json())
                 .then(data => {
-                    products = data.map(value =>
-                        new Product(value.id, value.name, value.description, value.price, value.stock, value.offer ? toOffer(value.offer) : null, value.category, value.img)
-                    );
+                    if (data.status == 200) return data.json()
+                    throw Error('La solicitud ha fallado con error ' + data.status)
+                })
+                .then(data => {
+                    products = data.map(value => {
+                        if (value.offer == undefined) throw Error('Este objeto no es valido')
+                        return new Product(value.id, value.name, value.description, value.price, value.stock, value.offer ? toOffer(value.offer) : null, value.category, value.img)
+                    });
                     products
                         .filter(product => !product.hasValidOffer())
                         .forEach(product => {
                             productHolder.innerHTML += product.asInnerHTMLForMainList()
                         })
                 })
-                .catch(error => console.log(error))
+                .catch(error => productHolder.innerHTML = error)
 
             let filteredProducts = products;
 
@@ -205,18 +209,7 @@
 
             let cart = []
 
-            /*
-                 En que contexto corre. 
-            */
-            function agregarElementoACarrito(elemento) { // addElementToCart
-                return cart.concat(elemento)
-            }
 
-            document.getElementById('product').addEventListener('click', (e) => {
-                let id = e.target.value
-                let elemento = products.find(product => product.id == id)
-                agregarElementoACarrito(elemento)
-            })
 
             document.getElementById('searchBar').addEventListener('keyup', searchProduct)
         </script>
