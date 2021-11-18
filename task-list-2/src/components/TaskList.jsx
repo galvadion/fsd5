@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const TaskList = ({tasks, removeElement}) =>{
     
@@ -34,6 +35,7 @@ export const Task = ({task, removeElement}) =>
                 onClick={()=> removeElement(task.id)}>
                 X
             </span> 
+            <Link to={`/task/${task.id}`}>Go</Link>
         </li>
     
 
