@@ -16,7 +16,7 @@ function App() {
   const [hasError, setHasError] = useState(false);
 
   useEffect(()=>{
-    fetch('http://localhost:4000/tareas')
+    fetch('http://localhost:8020/task')
       .then((data) => data.json())
       .then(data => {
         setTaskList(data);
@@ -34,7 +34,7 @@ function App() {
 
   const addTask = (task) =>{ // {task:'description', priority: 'priority' }
     setLoading(true)
-    fetch('http://localhost:4000/tareas',
+    fetch('http://localhost:8020/task',
     {
       method:'POST',
       headers:{ 
@@ -44,22 +44,24 @@ function App() {
       body: JSON.stringify({...task})
     })
       .then((data) => data.json())
-      .then(data => {
-        setTaskList(taskList.concat(data))
-        setLoading(false)
-      })
-      .catch(e=> console.log(e))
-     // Se queda con el objeto tal como viene y agregale una propiedad más
+      .then((data) => {
+          setTaskList(taskList.concat(data.task));
+          setLoading(false)
+          console.log(data)
+      }).catch(e=> console.log(e))
   }
 
   const removeElement = (id) =>{
-    setTaskList(taskList.filter(it => parseInt(it.id) !== parseInt(id)))
-  }
-
-  const getTaskById = (id) =>{
-    console.log(id)
-    console.log(taskList)
-    return taskList.find(it => it.id ==id)
+    setLoading(true)
+    fetch('http://localhost:8020/task/'+id,
+    {
+      method:'delete'
+    })
+      .then((data) => data.json())
+      .then((data) => {
+          setTaskList(data.tasks);
+          setLoading(false)
+      }).catch(e=> console.log(e))
   }
 
   return (
@@ -86,7 +88,7 @@ function App() {
         </TaskList> } />
         <Route exact path="/task/:id" render={(props) => 
           taskList.length> 0 &&
-          <Task task={getTaskById(props.match.params.id)} removeElement={removeElement} ></Task>
+          <Task removeElement={removeElement} id={props.match.params.id}></Task>
         } /> 
         <Route path="/">
           No existo

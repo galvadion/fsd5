@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const TaskList = ({tasks, removeElement}) =>{
@@ -27,7 +27,20 @@ const TaskList = ({tasks, removeElement}) =>{
     )
 }
 
-export const Task = ({task, removeElement}) =>
+export const Task = ({id, removeElement}) =>{
+
+    const [task,setTask] = useState({})
+
+    useEffect(()=>{
+        fetch('http://localhost:8020/task/'+id)
+        .then(data => data.json())
+        .then(data => {
+            setTask(data)
+        }).catch(e => console.error(e))
+    },[])
+
+    return (
+        
         <li key={task.id} 
             className={task.priority}>{task.task}
             <span 
@@ -37,6 +50,8 @@ export const Task = ({task, removeElement}) =>
             </span> 
             <Link to={`/task/${task.id}`}>Go</Link>
         </li>
+    )
+}
     
 
 export default TaskList

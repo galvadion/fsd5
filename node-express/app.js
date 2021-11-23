@@ -1,50 +1,28 @@
  const express = require('express')
+ const bodyParser = require('body-parser')
 
  const app = express();
 
- app.get('/', (req,res) => {
-     console.log(req.hostname)
-     console.log(req.ip)
-     console.log(req.body)
-     console.log(req.cookies)
-     res.send('Hello world')
- })
+ const taskRoutes = require('./tasks/routes')
 
- app.get('/catch', (req,res) => {
-    variable.x = 200
-    res.send('Termine sin fallar')
-})
-// Analogo al document.addEventListener('click', ()=> function )
-// libreria express . metodo, ruta (relativa al origen), funcion callback)
-// express().get ( path, Funct callback(req,res,next) )
-app.get('/timeout', (req,res,next) => {
+const cors = (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+}
 
-    setTimeout(()=>{
+//middlewares  -- metodo que se ejecuta antes de que llegue a un controlador 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json()); //Cuando reciba algun tipo de dato en un peticion la convierto en json, en cada petion
 
-        try{
-            variable.x = 200
-            res.send('Llego a una pagina X')
-        }catch(err){
-            next(err)
-        }
-    },10)
-    
-})
+//cors, configurar cabeceras http
+app.use(cors);
 
- app.get('/try', (req,res)=>{
-     let variable = 0;
-     try{
-        console.log("Inicio try");
-        variable = 200;
-     }catch(err){
-        console.log("Soy un error");
-        console.error(err);
-     }finally{
-         console.log("Finally");
-         res.send('Final :' + variable)
-     }
- })
+ app.use('/task',taskRoutes)
 
  app.listen(8020,()=> {
      console.log("App is listening in port 8020")
  })
+
