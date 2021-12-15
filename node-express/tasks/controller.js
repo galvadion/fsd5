@@ -13,6 +13,7 @@ function deleteTask(req, res) {
     };
 
 function getTask(req, res){
+  console.log(req)
       res.send(tasks);
   }
 
