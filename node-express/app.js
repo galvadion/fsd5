@@ -1,9 +1,12 @@
  const express = require('express')
  const bodyParser = require('body-parser')
+ const sequelize = require('./infrastructure/db')
 
  const app = express();
 
- const taskRoutes = require('./tasks/routes')
+ const taskRoutes = require('./tasks/routes');
+const Task = require('./tasks/task');
+const execute = require('./infrastructure/initialize');
 
 function cors(req, res, next){
         res.header('Access-Control-Allow-Origin', '*');
@@ -21,9 +24,23 @@ app.use(bodyParser.json()); //Cuando reciba algun tipo de dato en un peticion la
 //cors, configurar cabeceras http
 app.use(cors);
 
+app.get('/health',async(req,res)=>{
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+        res.sendStatus(200)
+
+      } catch (error) {
+        console.error('Unable to connect to the database:', error);
+        res.sendStatus(510)
+      }
+})
+
  app.use('/task',taskRoutes)
 
- app.listen(8020,()=> {
+ app.listen(8020,async ()=> {
+     await sequelize.sync({force:true})
+     execute();
      console.log("App is listening in port 8020")
  })
 
