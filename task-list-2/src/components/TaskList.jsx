@@ -20,7 +20,7 @@ const TaskList = ({tasks, removeElement}) =>{
         <ul id="lista-tareas">
             {
                 tasks.sort(byPriority).map(task => 
-                    <Task id={task.id} removeElement={removeElement}></Task>    
+                    <Task key={task.id} id={task.id} removeElement={removeElement}></Task>    
                 )
             }
         </ul>

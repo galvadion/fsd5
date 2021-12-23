@@ -6,18 +6,14 @@ class Task extends Model {}
 Task.init({
   // Model attributes are defined here
   task: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
   priority: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
-  city:{
-    type: DataTypes.STRING,
-    defaultValue: 'Casa',
-    allowNull:false
-  },
+  img: {
+    type: DataTypes.BLOB('long')
+},
   id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
@@ -27,9 +23,9 @@ Task.init({
   // Other model options go here
   sequelize, // We need to pass the connection instance
   modelName: 'Task', // We need to choose the model name
-  createdAt: false,
-  updatedAt: false,
-  timestamps: false,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
+  timestamps: true,
   tableName: 'tasks'
 });
 

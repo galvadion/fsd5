@@ -3,7 +3,9 @@ const Task = require('./task')
 
 async function addTask(req, res) {
   console.log(req.body)
-      res.send({ message: 'La tarea se ha agregado con éxito', task:  await Task.create(req.body) });
+  let task = req.body;
+  task.img = req.file.buffer;
+      res.send({ message: 'La tarea se ha agregado con éxito', task:  await Task.create(task) });
   }
 
 async function deleteTask(req, res) {

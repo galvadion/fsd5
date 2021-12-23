@@ -71,6 +71,10 @@ function App() {
         addTask={addTask}
         >
       </AddTask>
+      <form action="http://localhost:8020/task" method="post" enctype="multipart/form-data">
+  <input type="file" name="avatar" />
+  <button>CLICKEAME!!</button>
+</form>
       <PacmanLoader loading={loading}></PacmanLoader>
       <h3>Tareas</h3>
       {
