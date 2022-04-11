@@ -4,8 +4,8 @@
 
  const app = express();
 
- const taskRoutes = require('./tasks/routes');
-const Task = require('./tasks/task');
+ const taskRoutes = require('./domain/tasks/routes');
+const Task = require('./domain/tasks/task');
 const execute = require('./infrastructure/initialize');
 
 function cors(req, res, next){

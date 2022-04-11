@@ -1,4 +1,4 @@
-const Task = require('../tasks/task')
+const Task = require('../domain/tasks/task')
 
 function migrate() {
     console.log("i'm running")
